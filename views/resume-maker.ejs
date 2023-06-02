@@ -1,0 +1,151 @@
+<!-- you are using <%- theme2%> -->
+<div class="container">
+    <script>
+        function convertToData() { 
+            const file = document.getElementById('profile-image').files[0];
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function() {
+                // console.log(reader.result);
+                document.getElementById('profile-image-data').value = reader.result;
+            };
+            reader.onerror = function(error) {
+                console.log('Error: ', error);
+            };
+        }
+        //base 64 mai image bhej rahe ab 
+    </script>
+    <br>
+    <br>
+    <br>
+    <h5 class="text-secondary">You are using <%= theme2 %> theme</h5>
+    <form action="/resume-maker" class="text-primary form" method="POST" >
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="">Full Name</label>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">Phone Number</label>
+                <input type="text" name="phone" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">E-mail</label>
+                <input type="text" name="email" class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="">Father's name</label>
+                <input type="text" name="f_name" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">Mother's Name</label>
+                <input type="text" name="m_name" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">Date of Birth</label>
+                <input type="text" name="birth" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">About me</label>
+            <textarea class="form-control" name="about" id="" rows="2"></textarea>
+        </div>
+        <h4>Educational Qualifications</h4>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="">Year</label>
+                <input type="text" name="year1" class="form-control">
+            </div>
+            <div class="col-md-8 mb-3">
+                <label for="">Qualification</label>
+                <input type="text" name="qual1" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <!-- <label for="">Year</label> -->
+                <input type="text" name="year2" class="form-control">
+            </div>
+            <div class="col-md-8 mb-3">
+                <!-- <label for="">Qualification</label> -->
+                <input type="text" name="qual2" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <input type="text" name="year3" class="form-control">
+            </div>
+            <div class="col-md-8 mb-3">
+                <input type="text" name="qual3" class="form-control">
+            </div>
+        </div>
+        <h4>Expertise Area</h4>
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="">Exp. 1</label>
+                <input type="text" name="exp_1" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">Exp. 2</label>
+                <input type="text" name="exp_2" class="form-control">
+            </div>
+            <div class="col-md-4 mb-3">
+                <label for="">Exp. 3</label>
+                <input type="text" name="exp_3" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <h4>Hobbies</h4>
+            <!-- <label for=""></label> -->
+            <div class="input-group">
+                <input type="text" name="hobby1" class="form-control" placeholder="">
+                <input type="text" name="hobby2" class="form-control" placeholder="">
+                <input type="text" name="hobby3" class="form-control" placeholder=""">
+                <input type="text" name="hobby4" class="form-control" placeholder="">
+            </div>
+        </div>
+        <h4>Key Skills</h4>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="skill1">Skill 1</label>
+                    <input type="text" name="skill1" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="skill2">Skill 2</label>
+                    <input type="text" name="skill2" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="skill3">Skill 3</label>
+                    <input type="text" name="skill3" class="form-control">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="skill4">Skill 4</label>
+                    <input type="text" name="skill4" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="profile-image">Profile Image</label>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="profile-image" name="profileImage" onchange="convertToData()">
+                <label class="custom-file-label" for="profile-image">Choose file</label>
+
+                <!-- !!!HACK!!! hidden input filed used to store just image data -->
+                <input type="text" id="profile-image-data" name="profileImageData" hidden>
+            </div>
+        </div>
+        <div class="form-group">
+            <select name="theme" id="" hidden>
+                <option value="<%= theme2 %>"><%= theme2 %></option>
+            </select>            
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
